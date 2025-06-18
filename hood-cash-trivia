@@ -1,0 +1,69 @@
+{
+  "app_name": "Hood Trivia Cash Game",
+  "payment_gate": {
+    "provider": "stripe",
+    "link": "YOUR_STRIPE_LINK", // Replace with https://buy.stripe.com/abc123XYZ456
+    "entry_fee": 10
+  },
+  "prize_rules": {
+    "base_prize": 50,
+    "bonus_prize": 100,
+    "bonus_unlock_condition": "score == 20"
+  },
+  "screens": {
+    "payment_gate": {
+      "button_text": "PAY $10 & PLAY",
+      "redirect_logic": "immediate"
+    },
+    "question_screen": {
+      "source": "questions/main_questions.csv"
+    },
+    "bonus_round": {
+      "source": "questions/bonus_questions.csv",
+      "unlock_rule": "total_score >= 20"
+    }
+  }
+}
+Category,Question,Answer,Points
+Sneaker Culture,Model re-released in "Chicago" colorway?,Jordan1,1
+Hip-Hop Royalty,Label that signed Pop Smoke?,Republic,1
+Street Slang,What "cap" means?,Lie,1
+Bodega Knowledge,Essential sandwich add-on?,ChoppedCheese,1
+Hood Films,John Singleton’s debut?,BoyzNTheHood,1
+Trap Economics,Best profit margin product?,Ounce,1
+Mixtape Legends,DJ who launched 50 Cent?,Whookid,1
+Block Politics,Most guarded secret?,Plug,1
+Graffiti Lore,NY writer who sued City?,Cost,1
+Car Culture,Dominant donk rims size?,26s,1
+... // Add 190 more rows
+ Category,Question,Answer,Points
+Sneaker Culture,Rapper who destroyed Jordans on stage?,Kanye West,20
+Hip-Hop Royalty,Pop Smoke's breakout anthem?,Welcome to the Party,20
+Street Slang,Origin of "no cap"?,Memphis rap,20
+... // Add 47 more rows
+  import stripe
+stripe.api_key = 'sk_live_YOUR_KEY'  # Replace with actual key
+
+def handle_winner(email, score, bonus_score):
+    if score == 20 and bonus_score == 5:
+        payout = stripe.Payout.create(
+            amount=10000,  # $100 in cents
+            currency="usd",
+            destination="player_stripe_id",  # Auto-captured at payment
+            description="Hood Trivia Bonus Win"
+        )
+        return payout.id
+  #!/bin/bash
+# Replace placeholder with your Stripe link
+sed -i 's|YOUR_STRIPE_LINK|'"$1"'|g' bravo_config.json
+
+echo "🚀 Deploying to Bravo Studio..."
+# Add Bravo CLI commands here (simplified)
+curl -X POST -d @bravo_config.json https://api.bravostudio.app/deploy
+
+echo "✅ Live at: https://hood-trivia.bravoapps.com"
+  ## Skill-Based Gaming Terms
+1. Entry fee: $10 per game
+2. Base prize: $50 for 20/20 correct answers
+3. Bonus round: 5 questions → $100 for perfect score
+4. Winners paid within 24h via Stripe
