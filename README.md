@@ -1,4 +1,20 @@
-# 🧠 BlockGrindz Trivia
+npm install
+npm start
+npm run build
+
+---
+
+## 📌 How to Add It to GitHub
+
+1. Go to your GitHub repo
+2. Click the `README.md` file
+3. Click the ✏️ (edit) icon
+4. **Replace the content** with the version above
+5. Scroll down → click **“Commit changes”**
+
+You now have a polished project page and professional presence 🎉
+
+Would you like me to help format it with badges (e.g., build status, deploy links), or add screenshots to the README?# 🧠 BlockGrindz Trivia
 
 BlockGrindz Trivia is an urban-culture inspired quiz app built by **Block Grindz Ent**. Players pay to test their knowledge across 10 unique hood-based trivia categories, compete in challenge rounds, and earn rewards.
 
